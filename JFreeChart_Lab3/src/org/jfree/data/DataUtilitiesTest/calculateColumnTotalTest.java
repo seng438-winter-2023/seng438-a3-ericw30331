@@ -14,15 +14,82 @@ public class calculateColumnTotalTest extends DataUtilities {
 	/* 
 	 * Create mocking objects for values2D objects
 	 */
-	private Mockery mockingFilled = new Mockery(); //mock for table filled with values
+	private Mockery mockingPos = new Mockery(); //mock for table filled with only positive values
+	private final Values2D PosRows = mockingPos.mock(Values2D.class);
+	private Mockery mockingNeg = new Mockery(); //mock for table filled with only negative values
+	private final Values2D NegRows = mockingNeg.mock(Values2D.class);
+	private Mockery mockingFilled = new Mockery(); //mock for table filled with mixed positive and negative values
 	private final Values2D FilledRows = mockingFilled.mock(Values2D.class);
 	private Mockery mockingNull= new Mockery(); //mock for table filled with null values
 	private final Values2D NullRows = mockingNull.mock(Values2D.class);
 	private Mockery mockingNoRows = new Mockery(); //mock for empty table
 	private final Values2D NoRows = mockingNoRows.mock(Values2D.class);
-	private Mockery mockingNegativeColumn = new Mockery(); //mock for negative column
+	private Mockery mockingNegativeColumn = new Mockery(); //mock for negative column count
 	private final Values2D NegativeColumn = mockingNegativeColumn.mock(Values2D.class);
 
+	@Before //set up data table column with only negative values
+	public void setUpNegRows() throws Exception{ 
+	    mockingNeg.checking(new Expectations() { //fill mock with only negative values
+	        {
+	            one(NegRows).getRowCount(); //one call of getRowCount() returns value of 4, for 4 rows
+	            will(returnValue(4));
+	            one(NegRows).getColumnCount();
+	            will(returnValue(1));
+	            /*
+	             * Calls to fill values of 4 rows in the first column of the table
+	             */
+	            one(NegRows).getValue(0, 0); 
+	            will(returnValue(-9.0));
+	            one(NegRows).getValue(1, 0);
+	            will(returnValue(-7.5));
+	            one(NegRows).getValue(2, 0);
+	            will(returnValue(-5.0));
+	            one(NegRows).getValue(3, 0);
+	            will(returnValue(-25.0));
+	        }
+	    });
+	}
+
+	@Test 	// test for method calculateColumnTotal(Values2D data,int column) using valid data table
+	// and column with valid values. Table is fully filled with only negative values
+	public void calculateNegRows(){
+		
+	   	double result = DataUtilities.calculateColumnTotal(NegRows, 0);
+	   	assertEquals("calculateColumnTotal for column with only negative values , outputs incorrect result",-46.5,result, .000000001d);
+	   
+	}
+
+	@Before //set up data table column with only positive values
+	public void setUpPosRows() throws Exception{ 
+	    mockingPos.checking(new Expectations() { //fill mock with only positivevalues
+	        {
+	            one(PosRows).getRowCount(); //one call of getRowCount() returns value of 4, for 4 rows
+	            will(returnValue(4));
+	            one(PosRows).getColumnCount();
+	            will(returnValue(1));
+	            /*
+	             * Calls to fill values of 4 rows in the first column of the table
+	             */
+	            one(PosRows).getValue(0, 0); 
+	            will(returnValue(9.0));
+	            one(PosRows).getValue(1, 0);
+	            will(returnValue(7.5));
+	            one(PosRows).getValue(2, 0);
+	            will(returnValue(5.0));
+	            one(PosRows).getValue(3, 0);
+	            will(returnValue(25.0));
+	        }
+	    });
+	}
+
+	@Test 	// test for method calculateColumnTotal(Values2D data,int column) using valid data table
+	// and column with valid values. Table is fully filled with only positive values
+	public void calculatePosRows(){
+		
+	   	double result = DataUtilities.calculateColumnTotal(PosRows, 0);
+	   	assertEquals("calculateColumnTotal for column with only positive values , outputs incorrect result",46.5,result, .000000001d);
+	   
+	}
 	@Before //set up data with negative column and filled table
 	public void setUpNegativeColumn() throws Exception{
 		  mockingNegativeColumn.checking(new Expectations() { //fill mock with values
@@ -54,7 +121,7 @@ public class calculateColumnTotalTest extends DataUtilities {
 	}
 	@Before //set up data table column with valid values
 	public void setUpFilledRows() throws Exception{ 
-	    mockingFilled.checking(new Expectations() { //fill mock with values
+	    mockingFilled.checking(new Expectations() { //fill mock with mixed negative and positivevalues
 	        {
 	            one(FilledRows).getRowCount(); //one call of getRowCount() returns value of 4, for 4 rows
 	            will(returnValue(4));
@@ -76,7 +143,7 @@ public class calculateColumnTotalTest extends DataUtilities {
 	}
 
 	@Test 	// test for method calculateColumnTotal(Values2D data,int column) using valid data table
-	// and column with valid values
+	// and column with valid values. Table is fully filled with mixed positive and negative values
 	public void calculateValidRows(){
 		
 	   	double result = DataUtilities.calculateColumnTotal(FilledRows, 0);
