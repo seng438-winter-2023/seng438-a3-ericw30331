@@ -33,6 +33,7 @@ public class RangeEqualsTest {
     	example4 = new Range(1,5);
     	example5 = null;
     	example6 = null;
+    	//test
     }
     
 	
