@@ -16,6 +16,7 @@ public class RangeConstrainTest {
     private Range example2;
     private Range example3;
     private Range example4;
+    private Range example5;
 
     
     @BeforeClass public static void setUpBeforeClass() throws Exception {
@@ -29,6 +30,7 @@ public class RangeConstrainTest {
     	example2 = new Range(2,5);
     	example3 = new Range(-1,3);
     	example4 = null;
+    	example5 = new Range(Double.NaN, Double.NaN);
     }
     
 	

@@ -14,6 +14,7 @@ public class RangeCombineIgnoringNaNTest {
 	private Range base1;
     private Range example1;
     private Range example2;
+    private Range example3;
 
     @BeforeClass public static void setUpBeforeClass() throws Exception {
     }
@@ -25,6 +26,7 @@ public class RangeCombineIgnoringNaNTest {
     	base1 = new Range(-6, 3);
     	example1 = new Range(-3,3);
     	example2 = new Range(-6,-3);
+    	example3 = new Range(Double.NaN, Double.NaN);
     }
     
     @Test
@@ -47,7 +49,18 @@ public class RangeCombineIgnoringNaNTest {
     	assertEquals("The Range should be ()",
 		    	null, Range.combineIgnoringNaN(null, null));
     }
-	
+    @Test
+    public void testNaNFirst() {
+    	assertEquals("should return null", null, Range.combineIgnoringNaN(null, example3));
+    }
+    @Test
+    public void testNaNSecond() {
+    	assertEquals("should return null", null, Range.combineIgnoringNaN(example3, null));
+    }
+    @Test
+    public void testNaNboth() {
+    	assertEquals("should return null", null, Range.combineIgnoringNaN(example3, example3));
+    }
     @After
     public void tearDown() throws Exception {
     }
