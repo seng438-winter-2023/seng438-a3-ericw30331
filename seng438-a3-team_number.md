@@ -15,7 +15,7 @@ for each group. Please see each lab document for details.)
 
 # 1 Introduction
 
-Text…
+The purpose of this assignment was to perform more unit testing using Junit in eclipse. In the last assignment we were tasked with created black box unit tests using Junit, and in this assignment we will create more unit tests through white box testing. We will be developing tests using the white box technique and attempting to increase the coverage of 2 classes within JFreeChart, these are Datautilities and Range. We will be using Eclipse's built in coverage tool to check the adequecy of the written unit tests. There are 3 types of coverage that we will be focusing on in this assignment, these are Statement, Branch and Method Coverage. 
 
 # 2 Manual data-flow coverage calculations for X and Y methods
 
