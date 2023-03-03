@@ -2,12 +2,13 @@
 
 **Lab. Report #3 – Code Coverage, Adequacy Criteria and Test Case Correlation**
 
-| Group \#:      |     |
+| Group \#: 26    |     |
 | -------------- | --- |
 | Student Names: |     |
-|                |     |
-|                |     |
-|                |     |
+|  Muhammad Hasan              |     |
+|  Eric Wong              |     |
+|  Myles Pribeg              |     |
+|  Sasha Kobrusev              |     |
 
 (Note that some labs require individual reports while others require one report
 for each group. Please see each lab document for details.)
