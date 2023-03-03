@@ -21,6 +21,8 @@ public class calculateRowTotalTest2 extends DataUtilities {
 	private final Values2D NoColumns = mockingNoColumns.mock(Values2D.class);
 	private Mockery mockingNull = new Mockery(); //mock for table filled with null values
 	private final Values2D NullColumns = mockingNull.mock(Values2D.class);
+	private Mockery mockingNeg = new Mockery(); //mock for table filled with negative column count
+	private final Values2D NegColCount = mockingNeg.mock(Values2D.class);
 	
 	@Test //test for calculateRowTotal(Values2D data, int column, int[] validColumns) with null data
 	public void nullDataTest() {
@@ -30,6 +32,27 @@ public class calculateRowTotalTest2 extends DataUtilities {
 		catch(Exception e) {
 			assertEquals("null data should throw invalidparameterexception",InvalidParameterException.class,e.getClass());
 		}
+	}
+	@Before //setup for table with negative column count
+	public void setUpNegColCount() throws Exception{
+		threeValid[0] = 0;
+		threeValid[1] = 1;
+		threeValid[2] = 2;
+		
+		mockingNeg.checking(new Expectations() { //fill mock with mixed negative and positive values
+	        {
+	            one(NegColCount).getColumnCount(); //one call of getColumnCount() returns value of -1
+	            will(returnValue(-1));
+	        }
+	    });
+	}
+	@Test 	// test for method  calculateRowTotal(Values2D data, int column, int[] validColumns) 
+	//using table with negative column count
+	public void calculateNegColCount(){
+		
+	   	double result = DataUtilities.calculateRowTotal(NegColCount, 0,threeValid);
+	   	assertEquals("calculateRowTotal for row with negative column count , outputs incorrect result",0,result, .000000001d);
+	   
 	}
 	@Before //setup for three valid columns in column range with table filled with null values
 	public void setUpNullColumns() throws Exception{
@@ -41,7 +64,7 @@ public class calculateRowTotalTest2 extends DataUtilities {
 	        {
 	            one(NullColumns).getColumnCount(); //one call of getColumnCount() returns value of 4, for 4 columns
 	            will(returnValue(4));
-	            one(NullColumns).getColumnCount();
+	            one(NullColumns).getRowCount();
 	            will(returnValue(1));
 	            /*
 	             * Calls to fill values of 4 rows in the first column of the table
@@ -76,7 +99,7 @@ public class calculateRowTotalTest2 extends DataUtilities {
 	        {
 	            one(FilledColumns).getColumnCount(); //one call of getColumnCount() returns value of 4, for 4 columns
 	            will(returnValue(4));
-	            one(FilledColumns).getColumnCount();
+	            one(FilledColumns).getRowCount();
 	            will(returnValue(1));
 	            /*
 	             * Calls to fill values of 4 rows in the first column of the table
@@ -111,7 +134,7 @@ public class calculateRowTotalTest2 extends DataUtilities {
 	        {
 	            one(FilledColumns).getColumnCount(); //one call of getColumnCount() returns value of 4, for 4 columns
 	            will(returnValue(4));
-	            one(FilledColumns).getColumnCount();
+	            one(FilledColumns).getRowCount();
 	            will(returnValue(1));
 	            /*
 	             * Calls to fill values of 4 rows in the first column of the table
