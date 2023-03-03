@@ -19,7 +19,43 @@ public class calculateColumnTotalTest2 extends DataUtilities {
 	private final Values2D FilledRows = mockingFilled.mock(Values2D.class);
 	private Mockery mockingNoRows = new Mockery(); //mock for empty table
 	private final Values2D NoRows = mockingNoRows.mock(Values2D.class);
+	private Mockery mockingNull = new Mockery(); //mock for table filled with null values
+	private final Values2D NullRows = mockingNull.mock(Values2D.class);
 	
+	@Before //setup for three valid rows in row range with table filled with null values
+	public void setUpNullRows() throws Exception{
+		threeValid[0] = 0;
+		threeValid[1] = 1;
+		threeValid[2] = 2;
+		
+		mockingNull.checking(new Expectations() { //fill mock with mixed negative and positive values
+	        {
+	            one(NullRows).getRowCount(); //one call of getRowCount() returns value of 4, for 4 rows
+	            will(returnValue(4));
+	            one(NullRows).getColumnCount();
+	            will(returnValue(1));
+	            /*
+	             * Calls to fill values of 4 rows in the first column of the table
+	             */
+	            one(NullRows).getValue(0, 0); 
+	            will(returnValue(null));
+	            one(NullRows).getValue(1, 0);
+	            will(returnValue(null));
+	            one(NullRows).getValue(2, 0);
+	            will(returnValue(null));
+	            one(NullRows).getValue(3, 0);
+	            will(returnValue(null));
+	        }
+	    });
+	}
+	@Test 	// test for method  calculateColumnTotal(Values2D data, int column, int[] validRows) 
+	//using rows filled with null values
+	public void calculateNullRows(){
+		
+	   	double result = DataUtilities.calculateColumnTotal(NullRows, 0,threeValid);
+	   	assertEquals("calculateColumnTotal for column with null values , outputs incorrect result",0,result, .000000001d);
+	   
+	}
 	@Test //test for calculateColumnTotal(Values2D data, int column, int[] validRows) with null data
 	public void nullDataTest() {
 		try {

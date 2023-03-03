@@ -19,6 +19,8 @@ public class calculateRowTotalTest2 extends DataUtilities {
 	private final Values2D FilledColumns = mockingFilled.mock(Values2D.class);
 	private Mockery mockingNoColumns = new Mockery(); //mock for empty table
 	private final Values2D NoColumns = mockingNoColumns.mock(Values2D.class);
+	private Mockery mockingNull = new Mockery(); //mock for table filled with null values
+	private final Values2D NullColumns = mockingNull.mock(Values2D.class);
 	
 	@Test //test for calculateRowTotal(Values2D data, int column, int[] validColumns) with null data
 	public void nullDataTest() {
@@ -29,6 +31,41 @@ public class calculateRowTotalTest2 extends DataUtilities {
 			assertEquals("null data should throw invalidparameterexception",InvalidParameterException.class,e.getClass());
 		}
 	}
+	@Before //setup for three valid columns in column range with table filled with null values
+	public void setUpNullColumns() throws Exception{
+		threeValid[0] = 0;
+		threeValid[1] = 1;
+		threeValid[2] = 2;
+		
+		mockingNull.checking(new Expectations() { //fill mock with mixed negative and positive values
+	        {
+	            one(NullColumns).getColumnCount(); //one call of getColumnCount() returns value of 4, for 4 columns
+	            will(returnValue(4));
+	            one(NullColumns).getColumnCount();
+	            will(returnValue(1));
+	            /*
+	             * Calls to fill values of 4 rows in the first column of the table
+	             */
+	            one(NullColumns).getValue(0, 0); 
+	            will(returnValue(null));
+	            one(NullColumns).getValue(0, 1);
+	            will(returnValue(null));
+	            one(NullColumns).getValue(0, 2);
+	            will(returnValue(null));
+	            one(NullColumns).getValue(0, 3);
+	            will(returnValue(null));
+	        }
+	    });
+	}
+	@Test 	// test for method  calculateRowTotal(Values2D data, int column, int[] validColumns) 
+	//using table filled with only null values
+	public void calculateNullColumns(){
+		
+	   	double result = DataUtilities.calculateRowTotal(NullColumns, 0,threeValid);
+	   	assertEquals("calculateRowTotal for row with null values , outputs incorrect result",0,result, .000000001d);
+	   
+	}
+	
 	@Before //setup for three valid columns in column range with fully filled table
 	public void setUpValidFullData() throws Exception{
 		threeValid[0] = 0;
@@ -57,7 +94,7 @@ public class calculateRowTotalTest2 extends DataUtilities {
 	}
 	@Test 	// test for method  calculateRowTotal(Values2D data, int column, int[] validColumns)  using valid data table
 	// and columns < columnCount of table.
-	public void calculateValidRows(){
+	public void calculateValidColumns(){
 		
 	   	double result = DataUtilities.calculateRowTotal(FilledColumns, 0,threeValid);
 	   	assertEquals("calculateRowTotal for row with valid values , outputs incorrect result",-6.5,result, .000000001d);
