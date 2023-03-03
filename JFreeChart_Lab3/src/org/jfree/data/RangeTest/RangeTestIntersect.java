@@ -28,24 +28,24 @@ public class RangeTestIntersect {
     
     @Test
     public void testRangeLowers() {
-    	assertFalse("should return Range(1,5)", base1.intersects(new Range(0,1)));
+    	assertFalse("should return False since 0 - 1 does not intersect with 3 - 5", base1.intersects(new Range(0,1)));
 
     }
     @Test
     public void testRangeIntersectsLower() {
-    	assertTrue("should return Range(1,5)", base1.intersects(new Range(0,4)));
+    	assertTrue("should return True since 0 - 4 does not intersect with 3 - 5", base1.intersects(new Range(0,4)));
 
     	
     }
     @Test
     public void testRangeIntersectsUpper() {
-    	assertTrue("should return Range(1,5)", base1.intersects(new Range(4,6)));
+    	assertTrue("should return True since 4 - 6 does intersect with 3 - 5", base1.intersects(new Range(4,6)));
 
     	
     }
     @Test
     public void testRangeUpper() {
-    	assertFalse("should return Range(1,5)", base1.intersects(new Range(6,8)));
+    	assertFalse("sshould return False since 6 - 8 does not intersect with 3 - 5", base1.intersects(new Range(6,8)));
 
     	
     }
