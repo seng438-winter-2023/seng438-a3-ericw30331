@@ -43,7 +43,7 @@ Text…
 
 # 8 A discussion on how the team work/effort was divided and managed
 
-Text…
+The original Junit tests created using the black box technique were updated to increase coverage using the white box technique using the plan above. The remaining extra functions were then split up evenly among group members and each member worked on getting the highest possible coverage for their assigned methods. We then came together and reviewed each others code and improved on them wherever possible, the Manual coverage calculations were also assigned to specific group members and then we came together to complete the lab report document as a group.
 
 # 9 Any difficulties encountered, challenges overcome, and lessons learned from performing the lab
 
