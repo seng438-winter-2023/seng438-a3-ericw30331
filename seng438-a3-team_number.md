@@ -31,7 +31,8 @@ Text…
 
 # 5 A detailed report of the coverage achieved of each class and method (a screen shot from the code cover results in green and red color would suffice)
 
-Text…
+<img src="media/DataUtilitiesCoverage.png" alt="media/DataUtilitiesCoverage.png" width="360"/>
+<img src="media/RangeCoverage.png" alt="media/RangeCoverage.png" width="360"/>
 
 # 6 Pros and Cons of coverage tools used and Metrics you report
 
