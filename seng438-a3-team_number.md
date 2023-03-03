@@ -23,7 +23,7 @@ Text…
 
 # 3 A detailed description of the testing strategy for the new unit test
 
-Text…
+Our testing strategy for this assignment would make use of the coverage tool provided within eclipse (eclemma) and the white box testing technique to develop our new unit tests. Firstly, we decided to create test methods for every method within Range and Datautilities. After this first round of testing production we checked the coverage of the unit tests and created more tests based on missing branches and statements. Each iteration was made and checked for increased coverage until an adequate amount of coverage was achieved. In our case there were specific branches that we were unable to reach (infeasible path).
 
 # 4 A high level description of five selected test cases you have designed using coverage information, and how they have increased code coverage
 
