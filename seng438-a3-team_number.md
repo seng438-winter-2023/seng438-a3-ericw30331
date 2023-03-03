@@ -48,7 +48,7 @@ The original Junit tests created using the black box technique were updated to i
 
 # 9 Any difficulties encountered, challenges overcome, and lessons learned from performing the lab
 
-Text…
+The main difficulties was creating test cases for private methods. Since we decided to do method coverage we need to cover every method in the class and that includes the private classes. Furthermore, the coverage program we agreed on eclemma did not support condition coverage so we decided to do method coverage instead. There was also the additional problem of some branches of the method being impossible to test. For instances getlowerbound tested if the lower bound was higher then the upper bound and threw an exception. However this condition was impossible since in the constructor it checked the same conditions and there were no setters that could change the bound. The lessons we learned this lab was how to do white box testing and how to write proper tests that are able to cover method coverage completely and the importance of it
 
 # 10 Comments/feedback on the lab itself
 
