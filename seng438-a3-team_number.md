@@ -27,7 +27,23 @@ Our testing strategy for this assignment would make use of the coverage tool pro
 
 # 4 A high level description of five selected test cases you have designed using coverage information, and how they have increased code coverage
 
-Text…
+**1. getCumulativePercentages(KeyedValues data) test case nullFilledKeyedValues()**
+
+nullFilledKeyedValues()
+This test case increased branch coverage in getCumulativePercentages by reaching a branch in the code that was previously not covered. 
+The test case created a KeyedValues object with valid keys but null values associated with each of the keys. This covered the branch in getCumulativePercentages where the value was checked to be null or not. 
+
+**2. equal(double[][] a, double[][] b) test case SecondNullArray()**
+
+This test case increased method coverage, line coverage and branch coverage for the equal function in DataUtilities.
+The test case used a non null array as the first argument and a null array as the second argument. This covers the function equal 
+that was not previously covered, the branch in equal where b == null and the statement returning false.
+
+ **3. calculateRowTotal(Values2D data, int row,int[] validCols) test case calculateNegColCount()**
+
+calculateNegColCount()
+This test case increased method coverage, line coverage and branch coverage for the calculateRowTotal(Values2D data, int row,int[] validCols)  function in DataUtilities. The test case created a mock for values2D with a column count of negative one and passed it as an argument for data in calculateRowTotal(Values2D data, int row,int[] validCols). This covers the function calculateRowTotal(Values2D data, int row,int[] validCols) that was not previously covered, the branch in the function checking if the column count was less than zero,
+and the statement modifying the total to be equal to 0.0.
 
 # 5 A detailed report of the coverage achieved of each class and method (a screen shot from the code cover results in green and red color would suffice)
 
@@ -48,7 +64,7 @@ The original Junit tests created using the black box technique were updated to i
 
 # 9 Any difficulties encountered, challenges overcome, and lessons learned from performing the lab
 
-The main difficulties was creating test cases for private methods. Since we decided to do method coverage we need to cover every method in the class and that includes the private classes. Furthermore, the coverage program we agreed on eclemma did not support condition coverage so we decided to do method coverage instead. There was also the additional problem of some branches of the method being impossible to test. For instances getlowerbound tested if the lower bound was higher then the upper bound and threw an exception. However this condition was impossible since in the constructor it checked the same conditions and there were no setters that could change the bound. The lessons we learned this lab was how to do white box testing and how to write proper tests that are able to cover method coverage completely and the importance of it
+Text…
 
 # 10 Comments/feedback on the lab itself
 
