@@ -26,12 +26,12 @@ public class RangeShiftTest {
     
     @Test
     public void testRange2arguments() {
-    	assertEquals("should return Range(1,5)", new Range(3,7), Range.shift(base1, 2));
+    	assertEquals("shifting range 1 - 5 by 2 should return a Range of 3 -7", new Range(3,7), Range.shift(base1, 2));
 
     }
     @Test
     public void testRange3arguments() {
-    	assertEquals("should return Range(1,5)", new Range(3,7), Range.shift(base1, 2,true));
+    	assertEquals("shifting range 1 - 5 by 2 should return a Range of 3 -7", new Range(3,7), Range.shift(base1, 2,true));
 
     	
     }
